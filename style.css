@@ -1,0 +1,47 @@
+/* define synthwave colors */
+
+:root {
+    --color-pink: #d30cb8;
+    --color-green: #6df1d8;
+    --color-purple: #5c2c6d;
+    --color-dark-green: #5da4a6;
+    --color-pastel: #b8aec8;
+    --color-purpl2: #3c345c;
+    --color-white: #fff;
+}
+
+
+@font-face {
+    font-family: 'VCR_OSD_MONO';
+    src: url('VCR_OSD_MONO.ttf');
+}
+
+/* steamster.ttf */
+
+@font-face {
+    font-family: 'steamster';
+    src: url('streamster.ttf');
+}
+
+* {
+    font-family: 'VCR_OSD_MONO', serif;
+    color: var(--color-pink);
+}
+
+
+.game-pad-container h1 {
+    font-family: 'steamster', serif;
+    text-transform: uppercase;
+}
+
+body {
+    background-color: var(--color-purpl2);
+}
+
+.color-green {
+    color: var(--color-green);
+}
+
+th, td {
+    color: var(--color-green);
+}
