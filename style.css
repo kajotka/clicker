@@ -1,5 +1,3 @@
-/* define synthwave colors */
-
 :root {
     --color-pink: #d30cb8;
     --color-green: #6df1d8;
@@ -15,8 +13,6 @@
     font-family: 'VCR_OSD_MONO';
     src: url('VCR_OSD_MONO.ttf');
 }
-
-/* steamster.ttf */
 
 @font-face {
     font-family: 'steamster';
@@ -43,5 +39,82 @@ body {
 }
 
 th, td {
+    color: var(--color-green);
+}
+
+.game-container {
+    height: 100vh;
+}
+
+body {
+    background-image: url("bg.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main-menu * {
+    color: var(--color-pink);
+}
+
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-top: 20%;
+}
+
+.main-menu h1:hover {
+    color: var(--color-dark-green);
+    cursor: pointer;
+}
+
+
+.box {
+    width: 35%;
+    height: calc(100%);
+    border: 1px solid var(--color-pastel);
+    background-color: var(--color-purpl2);
+    margin-left: 15rem;
+}
+
+.game-pad-container {
+    width: calc(100% - 35%);
+}
+
+.game-pad {
+    width: 350px;
+    height: calc(50vh);
+    border: 1px solid var(--color-pastel);
+    background-color: var(--color-purpl2);
+    margin-left: 3rem;
+    padding: 1rem;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.click-pad {
+    width: 100%;
+    height: 200px;
+    background-color: var(--color-dark-green);
+    border: 1px solid var(--color-pastel);
+}
+
+.game-bottom {
+    height: 100px;
+}
+
+.result {
+    padding: 20px;
+    background-color: var(--color-purpl2);
+    color: var(--color-green);
+    border: 1px solid var(--color-pastel);
+}
+
+.result * {
     color: var(--color-green);
 }

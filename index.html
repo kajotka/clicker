@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clciker</title>
+    <title>Clicker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -13,21 +13,46 @@
 <body>
 <div class="game-container d-flex">
     <div class="box">
-        <div class="box__inner">
-            <div class="box__content">
-                <img src="logo2.jpeg" alt="" class="logo">
-                <div class="main-menu text-center">
-                    <h1 id="click-play" class="fs-1" id>GRAJ</h1>
-                    <h1 id="click-help" class="fs-1">POMOC</h1>
-                    <h1 id="click-rank" class="fs-1">RANKING</h1>
-                    <h1 id="click-exit" class="fs-1">KONIEC</h1>
-                </div>
+        <div>
+            <img src="logo2.jpeg" alt="" class="logo">
+            <div class="main-menu text-center">
+                <h1 id="click-play" class="fs-1">GRAJ</h1>
+                <h1 id="click-help" class="fs-1">POMOC</h1>
+                <h1 id="click-rank" class="fs-1">RANKING</h1>
+                <h1 id="click-exit" class="fs-1">KONIEC</h1>
             </div>
         </div>
     </div>
-    <div id="pad-container" class="game-pad-container d-flex justify-content-center align-items-center"
-         style="display: none;">
+    <div id="pad-container" class="game-pad-container d-flex justify-content-center align-items-center">
         <div class="game-pad" style="display: none;">
+
+            <!--gra start-->
+            <div class="game-pad-item" id="game">
+                <p class="text-center">Kliknij spacje lub w kwadrat, aby rozpoczac</p>
+                <div class="click-pad" id="pad"></div>
+                <div class="game-bottom d-flex justify-content-around align-items-center">
+                    <div class="counter">
+                        <p class="text-center">Klikniec: <span id="clicks">0</span></p>
+                    </div>
+                    <div class="countdown">
+                        <p class="text-center">Czas: <span id="countdown">10</span></p>
+                    </div>
+                </div>
+
+<!--                result-->
+                <div class="result" id="result" style="display: none;">
+                    <div class="result-container">
+                        <div class="result-header">
+                            <h1 class="text-center">Wynik</h1>
+                        </div>
+                        <div class="result-body">
+                            <p class="text-center">Klikniec: <span id="clicks-result">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- pomoc -->
             <div class="game-pad-item" id="help">
                 <h1 class="text-center">Zasady</h1>
                 <div class="text-start">
@@ -44,8 +69,8 @@
                     </ul>
                 </div>
             </div>
-
-            <!--            ranking-->
+            <!--pomoc koniec-->
+            <!--ranking-->
             <div class="game-pad-item" id="rank">
                 <h1 class="text-center">Ranking</h1>
                 <table class="table table-striped color-green">
@@ -57,164 +82,13 @@
                     </tr>
                     </thead>
                     <tbody id="ranking-table">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Adam</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Adam</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Adam</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Adam</td>
-                        <td>100</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Adam</td>
-                        <td>100</td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
+            <!--ranking koniec-->
         </div>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
 <script src="script.js"></script>
 </body>
-
-<style>
-    .game-container {
-        height: 100vh;
-    }
-
-    /*body background bg.webp*/
-
-    body {
-        background-image: url("bg.webp");
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .main-menu * {
-        color: var(--color-pink);
-    }
-
-    .main-menu {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-        margin-top: 20%;
-    }
-
-    .main-menu h1:hover {
-        color: var(--color-dark-green);
-        cursor: pointer;
-    }
-
-
-    .box {
-        width: 35%;
-        height: calc(100%);
-        border: 1px solid var(--color-pastel);
-        background-color: var(--color-purpl2);
-        margin-left: 15rem;
-    }
-
-    .game-pad-container {
-        width: calc(100% - 35%);
-    }
-
-    .game-pad {
-        width: 350px;
-        height: calc(50vh);
-        border: 1px solid var(--color-pastel);
-        background-color: var(--color-purpl2);
-        margin-left: 3rem;
-        padding: 1rem;
-    }
-
-    .logo {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-</style>
-
-<script>
-    // on menu * play click-sound.mp3
-
-    const playSound = () => {
-        const audio = new Audio('click-sound.mp3');
-        audio.play();
-    }
-
-    const menuItems = document.querySelectorAll('.main-menu h1');
-
-    menuItems.forEach(item => {
-        item.addEventListener('click', playSound);
-    })
-
-    // on click-help show game-pad-container and #help
-
-    const clickHelp = document.querySelector('#click-help');
-    const gamePadContainer = document.querySelector('#pad-container');
-    const gamePad = document.querySelector('.game-pad');
-    const help = document.querySelector('#help');
-
-    const gamePadItems = document.querySelectorAll('.game-pad .game-pad-item');
-
-    function hideGamePadItems() {
-        gamePadItems.forEach(item => {
-            item.style.display = 'none';
-        })
-    }
-
-    clickHelp.addEventListener('click', () => {
-        hideGamePadItems();
-        gamePadContainer.style.display = 'flex';
-        gamePad.style.display = 'block';
-        help.style.display = 'block';
-    })
-
-    // on click-rank show game-pad-container and #rank
-
-    const clickRank = document.querySelector('#click-rank');
-    const rank = document.querySelector('#rank');
-
-    clickRank.addEventListener('click', () => {
-        hideGamePadItems();
-        gamePadContainer.style.display = 'flex';
-        gamePad.style.display = 'block';
-        rank.style.display = 'block';
-    })
-
-
-    const clickExit = document.querySelector('#click-exit');
-
-    clickExit.addEventListener('click', () => {
-        gamePadContainer.style.display = 'none';
-        gamePad.style.display = 'none';
-        help.style.display = 'none';
-    })
-</script>
 </html>
