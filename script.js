@@ -1,79 +1,53 @@
-// on menu * play click-sound.mp3
-const arrayOfRandomNames = [
-    'Alex',
-    'Bob',
-    'Cathy',
-    'Dan',
-    'Emma',
-    'Fred',
-    'Gina',
-    'Hank',
-    'Iris',
-    'Jack',
-    'Kate',
-    'Lily',
-    'Mike',
-    'Nancy',
-    'Oscar',
-    'Pam',
-    'Quinn',
-    'Ron',
-    'Sam',
-    'Tom',
-    'Uma',
-    'Victor',
-    'Walter',
-    'Xander',
-    'Yolanda',
-    'Zoe'
-];
+const arrayOfRandomNames = ['Alex', 'Bob', 'Cathy', 'Dan', 'Emma', 'Fred', 'Gina', 'Hank', 'Iris', 'Jack', 'Kate', 'Lily', 'Mike', 'Nancy', 'Oscar', 'Pam', 'Quinn', 'Ron', 'Sam', 'Tom', 'Uma', 'Victor', 'Walter', 'Xander', 'Yolanda', 'Zoe'];
 
-const playSound = () => {
+const gamePadItems = document.querySelectorAll('.game-pad .game-pad-item');
+const gamePad = document.querySelector('.game-pad');
+
+// odtworzenie dzwieku na klikniecie w menu
+const menuItems = document.querySelectorAll('.main-menu h1');
+
+const playSound = function () {
     const audio = new Audio('click-sound.mp3');
+    audio.volume = 0.1;
     audio.play();
 }
 
-const menuItems = document.querySelectorAll('.main-menu h1');
 
 menuItems.forEach(item => {
     item.addEventListener('click', playSound);
 })
+// odtworzenie dzwieku koniec
 
-// on click-help show game-pad-container and #help
-
-const clickHelp = document.querySelector('#click-help');
-const gamePadContainer = document.querySelector('#pad-container');
-const gamePad = document.querySelector('.game-pad');
-const clickPad = document.querySelector('#click-pad');
-const help = document.querySelector('#help');
-
-const gamePadItems = document.querySelectorAll('.game-pad .game-pad-item');
-
-function hideGamePadItems() {
+const hideGamePadItems = () => {
     gamePadItems.forEach(item => {
         item.style.display = 'none';
     })
+    gamePad.style.opacity = 0;
 }
+
+// pokaż pomoc
+const clickHelp = document.querySelector('#click-help');
+const help = document.querySelector('#help');
 
 clickHelp.addEventListener('click', () => {
     hideGamePadItems();
-    gamePadContainer.style.display = 'flex';
-    gamePad.style.display = 'block';
+    gamePad.style.opacity = 1;
     help.style.display = 'block';
 })
+// pokaż pomoc koniec
 
-// on click-rank show game-pad-container and #rank
-
+// pokaż ranking
 const clickRank = document.querySelector('#click-rank');
 const rank = document.querySelector('#rank');
 const table = document.getElementById('ranking-table');
 
-clickRank.addEventListener('click', () => {
+clickRank.addEventListener('click', function () {
     hideGamePadItems();
     while (table.firstChild) {
         table.removeChild(table.firstChild);
     }
 
+    // stworzenie tablicy z wynikami
     let ranks = [];
     for (let i = 0; i < 5; i++) {
         let randomName = arrayOfRandomNames[Math.floor(Math.random() * arrayOfRandomNames.length)];
@@ -83,97 +57,122 @@ clickRank.addEventListener('click', () => {
             result: randomResult
         });
     }
-
+    // posortowanie tablicy po wyniku
     ranks.sort((a, b) => b.result - a.result);
 
-
-    ranks.forEach((rank, index) => {
+    // dodanie wyników do tabeli
+    ranks.forEach(function (rank, index) {
         let tr = document.createElement('tr');
-        let th = document.createElement('th');
-        th.setAttribute('scope', 'row');
-        th.innerHTML = index + 1;
+        let tdRank = document.createElement('td');
         let tdName = document.createElement('td');
-        tdName.innerHTML = rank.name;
         let tdResult = document.createElement('td');
+
+        tdRank.innerHTML = index + 1;
+        tdName.innerHTML = rank.name;
         tdResult.innerHTML = rank.result;
-        tr.appendChild(th);
+
+        tr.appendChild(tdRank);
         tr.appendChild(tdName);
         tr.appendChild(tdResult);
+
         table.appendChild(tr);
     });
 
-
-    gamePadContainer.style.display = 'flex';
-    gamePad.style.display = 'block';
+    gamePad.style.opacity = 1;
     rank.style.display = 'block';
 })
+// pokaż ranking koniec
 
 
+// wyjdź
 const clickExit = document.querySelector('#click-exit');
 
-clickExit.addEventListener('click', () => {
-    gamePadContainer.style.display = 'none';
-    gamePad.style.display = 'none';
-    help.style.display = 'none';
+clickExit.addEventListener('click', function () {
+    hideGamePadItems();
 })
+// wyjdź koniec
 
-// on click-play show game-pad-container and #game
 
+// gra
 const clickPlay = document.querySelector('#click-play');
 const game = document.querySelector('#game');
-const reset = document.querySelector('#reset');
-
+const resultContainer = document.querySelector('#result');
+const pad = document.getElementById('pad')
 
 let click = 0;
 let time = 10;
-let result = 0;
 
-function increaseClicks() {
+// usuwamy wszystkie event listenery żeby się nie dublowały na wejściu
+// chowamy wszystkie elementy wewnątrz gamePad
+// pokazujemy gre
+// dodajemy event listenery
+clickPlay.addEventListener('click', function () {
+    document.removeEventListener('keydown', increaseClicks);
+    gamePad.removeEventListener('click', increaseClicks);
+    hideGamePadItems();
+    gamePad.style.opacity = 1;
+    game.style.display = 'block';
+
+    addGameEventListeners();
+})
+
+function increaseClicks(e) {
+    // jeżeli jest pierwszy klik to rozpoczynamy odliczanie
     if (click === 0) {
         startTimer();
     }
-    click++;
-    document.querySelector('#clicks').innerHTML = click;
+    // podnosimy licznik kliknięć jeżeli kliknięcie jest na padzie albo została kliknięta spacja
+    if (e.type === 'click' || e.code === 'Space') {
+        click++;
+        document.getElementById('clicks').innerHTML = click;
+    }
 }
 
-clickPlay.addEventListener('click', () => {
-    hideGamePadItems();
-    gamePadContainer.style.display = 'flex';
-    gamePad.style.display = 'block';
-    game.style.display = 'block';
+// funkcja do dodania event listenerów na padzie
+function addGameEventListeners() {
+    document.addEventListener('keydown', increaseClicks);
+    pad.addEventListener('click', increaseClicks);
+}
 
-    document.addEventListener('keydown', (e) => {
-        if (e.code === 'Space') {
-            increaseClicks();
-        }
-    })
+// funkcja do usunięcia event listenerów na padzie
+function removeGameEventListeners() {
+    document.removeEventListener('keydown', increaseClicks);
+    pad.removeEventListener('click', increaseClicks);
+}
 
-    gamePad.addEventListener('click', () => {
-        increaseClicks();
-    })
-})
+// funkcja odpalana w momencie zakońćzenia gry
+function stopGame() {
+    stopTimer();
+    removeGameEventListeners();
+    document.querySelector('#clicks-result').innerHTML = click;
+    resultContainer.style.display = 'block';
+}
 
+// zmienna przechowująca setInterval po to żeby wiedzieć co zatrzymać
 let intervalId;
-
-startTimer = () => {
+startTimer = function () {
     intervalId = setInterval(() => {
         time--;
         document.querySelector('#countdown').innerHTML = time;
         if (time === 0) {
-            time = 10;
-            result = click;
-            click = 0;
-            document.querySelector('#clicks').innerHTML = click;
-            document.querySelector('#countdown').innerHTML = time;
-            stopTimer();
-
-            document.querySelector('#clicks-result').innerHTML = result;
-            document.querySelector('#result').style.display = 'block';
+            stopGame();
         }
     }, 1000);
 }
 
-stopTimer = () => {
+function stopTimer() {
     clearInterval(intervalId);
 }
 
+const resetButton = document.querySelector('#reset');
+// na resecie resetujemy licznik kliknięć oraz czas i chowamy wynik
+resetButton.addEventListener('click', function () {
+    click = 0;
+    time = 10;
+    document.querySelector('#clicks').innerHTML = click;
+    document.querySelector('#countdown').innerHTML = time;
+    resultContainer.style.display = 'none';
+
+    addGameEventListeners();
+})
+// gra koniec

@@ -27,23 +27,28 @@
 
 .game-pad-container h1 {
     font-family: 'steamster', serif;
-    text-transform: uppercase;
 }
 
 body {
     background-color: var(--color-purpl2);
+    height: 100vh;
+    margin: 0 auto;
 }
 
 .color-green {
     color: var(--color-green);
 }
 
-th, td {
+th,
+td {
     color: var(--color-green);
 }
 
 .game-container {
-    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
 }
 
 body {
@@ -59,9 +64,8 @@ body {
 .main-menu {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    margin-top: 20%;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 .main-menu h1:hover {
@@ -69,26 +73,31 @@ body {
     cursor: pointer;
 }
 
-
-.box {
-    width: 35%;
-    height: calc(100%);
-    border: 1px solid var(--color-pastel);
-    background-color: var(--color-purpl2);
-    margin-left: 15rem;
+.text-center {
+    text-align: center;
 }
 
-.game-pad-container {
-    width: calc(100% - 35%);
+
+.box {
+    width: 350px;
+    border: 1px solid var(--color-pastel);
+    background-color: var(--color-purpl2);
 }
 
 .game-pad {
-    width: 350px;
-    height: calc(50vh);
     border: 1px solid var(--color-pastel);
     background-color: var(--color-purpl2);
-    margin-left: 3rem;
     padding: 1rem;
+    width: 500px;
+}
+
+.game-pad h1 {
+    font-size: 60px;
+}
+
+li {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .logo {
@@ -110,11 +119,56 @@ body {
 
 .result {
     padding: 20px;
+    padding-top: 0px;
     background-color: var(--color-purpl2);
     color: var(--color-green);
-    border: 1px solid var(--color-pastel);
+}
+
+.result h1 {
+    margin-top: 0;
 }
 
 .result * {
     color: var(--color-green);
+}
+
+.reset-btn {
+    background-color: var(--color-pastel);
+    color: var(--color-pink)
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+thead {
+    border-bottom: 2px solid gray;
+}
+
+thead th {
+    padding-bottom: 10px;
+}
+
+tr {
+    border-bottom: 1px solid gray;
+}
+
+tr td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+table tr:last-of-type {
+    border-bottom: 0px;
+}
+
+#game {
+    font-size: 20px;
+}
+
+button {
+    font-size: 27px;
+    padding: 5px 10px;
 }
