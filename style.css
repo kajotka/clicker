@@ -4,7 +4,7 @@
     --color-purple: #5c2c6d;
     --color-dark-green: #5da4a6;
     --color-pastel: #b8aec8;
-    --color-purpl2: #3c345c;
+    --color-purple: #3c345c;
     --color-white: #fff;
 }
 
@@ -24,24 +24,13 @@
     color: var(--color-pink);
 }
 
-
-.game-pad-container h1 {
-    font-family: 'steamster', serif;
-}
-
 body {
-    background-color: var(--color-purpl2);
+    background-image: url("bg.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100vh;
     margin: 0 auto;
-}
-
-.color-green {
-    color: var(--color-green);
-}
-
-th,
-td {
-    color: var(--color-green);
+    background-color: var(--color-purple);
 }
 
 .game-container {
@@ -51,10 +40,11 @@ td {
     height: 100%;
 }
 
-body {
-    background-image: url("bg.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
+
+.box {
+    width: 350px;
+    border: 1px solid var(--color-pastel);
+    background-color: var(--color-purple);
 }
 
 .main-menu * {
@@ -73,20 +63,30 @@ body {
     cursor: pointer;
 }
 
+
+.game-pad-container h1 {
+    font-family: 'steamster', serif;
+}
+
+
+.color-green {
+    color: var(--color-green);
+}
+
+th,
+td {
+    color: var(--color-green);
+}
+
+
 .text-center {
     text-align: center;
 }
 
 
-.box {
-    width: 350px;
-    border: 1px solid var(--color-pastel);
-    background-color: var(--color-purpl2);
-}
-
 .game-pad {
     border: 1px solid var(--color-pastel);
-    background-color: var(--color-purpl2);
+    background-color: var(--color-purple);
     padding: 1rem;
     width: 500px;
 }
@@ -120,7 +120,7 @@ li {
 .result {
     padding: 20px;
     padding-top: 0px;
-    background-color: var(--color-purpl2);
+    background-color: var(--color-purple);
     color: var(--color-green);
 }
 

@@ -1,12 +1,11 @@
 const arrayOfRandomNames = ['Alex', 'Bob', 'Cathy', 'Dan', 'Emma', 'Fred', 'Gina', 'Hank', 'Iris', 'Jack', 'Kate', 'Lily', 'Mike', 'Nancy', 'Oscar', 'Pam', 'Quinn', 'Ron', 'Sam', 'Tom', 'Uma', 'Victor', 'Walter', 'Xander', 'Yolanda', 'Zoe'];
 
-const gamePadItems = document.querySelectorAll('.game-pad .game-pad-item');
+const gamePadItems = document.querySelectorAll('.game-pad-item');
 const gamePad = document.querySelector('.game-pad');
 
 // odtworzenie dzwieku na klikniecie w menu
 const menuItems = document.querySelectorAll('.main-menu h1');
-
-const playSound = function () {
+function playSound() {
     const audio = new Audio('click-sound.mp3');
     audio.volume = 0.1;
     audio.play();
@@ -18,7 +17,7 @@ menuItems.forEach(item => {
 })
 // odtworzenie dzwieku koniec
 
-const hideGamePadItems = () => {
+function hideGamePadItems() {
     gamePadItems.forEach(item => {
         item.style.display = 'none';
     })
@@ -43,6 +42,7 @@ const table = document.getElementById('ranking-table');
 
 clickRank.addEventListener('click', function () {
     hideGamePadItems();
+    // wyczyszczenie tabeli z wyników
     while (table.firstChild) {
         table.removeChild(table.firstChild);
     }
