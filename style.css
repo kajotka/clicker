@@ -134,7 +134,9 @@ li {
 
 .reset-btn {
     background-color: var(--color-pastel);
-    color: var(--color-pink)
+    color: var(--color-pink);
+    font-size: 27px;
+    padding: 5px 10px;
 }
 
 table {
@@ -166,9 +168,4 @@ table tr:last-of-type {
 
 #game {
     font-size: 20px;
-}
-
-button {
-    font-size: 27px;
-    padding: 5px 10px;
 }
