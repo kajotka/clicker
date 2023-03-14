@@ -169,3 +169,25 @@ table tr:last-of-type {
 #game {
     font-size: 20px;
 }
+
+@media only screen and (max-width: 900px) {
+    .game-container {
+        flex-wrap: wrap;
+    }
+
+    .box {
+        width: 100%;
+    }
+
+    .game-pad {
+        width: 100%;
+        padding: 0;
+    }
+
+    ul {
+        padding-right: 20px;
+    }
+    .game-pad-container {
+        width: 100%;
+    }
+}
